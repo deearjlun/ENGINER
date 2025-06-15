@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda Matemática - Ingeniería Eléctrica</title>
+    <style>
+        body {
+            background: repeating-linear-gradient(
+                135deg,
+                #e0e7ef,
+                #e0e7ef 20px,
+                #f7f9fa 20px,
+                #f7f9fa 40px
+            );
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 2.5em;
+            margin-bottom: 0.2em;
+        }
+        .rayo-svg {
+            width: 48px;
+            height: 48px;
+            vertical-align: middle;
+        }
+        .contenedor {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 16px #b3c6e0;
+            margin-bottom: 30px;
+            border-left: 8px solid #ffe066;
+        }
+        h2 {
+            color: #1e90ff;
+            margin-top: 0;
+        }
+        input, button {
+            font-size: 1.1em;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #b3c6e0;
+            padding: 6px 10px;
+        }
+        button {
+            background: #ffe066;
+            color: #2c3e50;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #ffd700;
+        }
+        .explicacion {
+            background: #eaf6fb;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.98em;
+            border-left: 4px solid #1e90ff;
+        }
+        /* Decoración de footer */
+        .footer {
+            text-align: center;
+            color: #888;
+            margin-top: 40px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <svg class="rayo-svg" viewBox="0 0 64 64" fill="none">
+            <polygon points="36,4 8,36 30,36 28,60 56,28 34,28" fill="#ffe066" stroke="#f7b801" stroke-width="3"/>
+        </svg>
+        MathCalcPro-Jeffrey Luna
+    </h1>
+
+    <div class="contenedor">
+        <h2>Ecuación general (ax² + bx + c = 0)</h2>
+        <div class="explicacion">
+            Ingresa los valores de <b>a</b>, <b>b</b> y <b>c</b> para resolver la ecuación cuadrática. 
+            Se mostrarán ambos resultados de <b>x</b>, incluyendo soluciones complejas si existen.
+        </div>
+        <input type="number" id="a" placeholder="a">
+        <input type="number" id="b" placeholder="b">
+        <input type="number" id="c" placeholder="c">
+        <button onclick="resolverCuadratica()">Resolver</button>
+        <p id="resultadoCuadratica"></p>
+    </div>
+
+    <div class="contenedor">
+        <h2>Ecuación de la recta (dos puntos)</h2>
+        <div class="explicacion">
+            Ingresa las coordenadas de dos puntos (<b>x₁, y₁</b> y <b>x₂, y₂</b>). 
+            El sistema calculará la ecuación de la recta en la forma <b>y = mx + b</b>.
+        </div>
+        <input type="number" id="x1" placeholder="x₁">
+        <input type="number" id="y1" placeholder="y₁">
+        <input type="number" id="x2" placeholder="x₂">
+        <input type="number" id="y2" placeholder="y₂">
+        <button onclick="resolverRecta()">Calcular</button>
+        <p id="resultadoRecta"></p>
+    </div>
+
+    <div class="contenedor">
+        <h2>Ecuación de la circunferencia</h2>
+        <div class="explicacion">
+            Ingresa el centro (<b>h</b>, <b>k</b>) y el radio <b>r</b>.<br>
+            Se mostrará la ecuación canónica:<br>
+            <b>(x - h)² + (y - k)² = r²</b><br>
+            y la ecuación general:<br>
+            <b>x² + y² + Dx + Ey + F = 0</b>
+        </div>
+        <input type="number" id="h" placeholder="h">
+        <input type="number" id="k" placeholder="k">
+        <input type="number" id="r" placeholder="r">
+        <button onclick="resolverCircunferencia()">Calcular</button>
+        <p id="resultadoCircunferencia"></p>
+    </div>
+
+    <div class="contenedor">
+        <h2>Ecuaciones radicales</h2>
+        <div class="explicacion">
+            Resuelve ecuaciones simples de la forma <b>√x = a</b>. Ingresa el valor de <b>a</b> para encontrar <b>x</b>.
+        </div>
+        <input type="number" id="radicalA" placeholder="a">
+        <button onclick="resolverRadical()">Resolver</button>
+        <p id="resultadoRadical"></p>
+    </div>
+
+    <div class="contenedor">
+        <h2>Ecuaciones racionales</h2>
+        <div class="explicacion">
+            Resuelve ecuaciones simples de la forma <b>a/x = b</b>. Ingresa los valores de <b>a</b> y <b>b</b> para encontrar <b>x</b>.
+        </div>
+        <input type="number" id="racionalA" placeholder="a">
+        <input type="number" id="racionalB" placeholder="b">
+        <button onclick="resolverRacional()">Resolver</button>
+        <p id="resultadoRacional"></p>
+    </div>
+
+    <div class="contenedor">
+        <h2>Funciones</h2>
+        <div class="explicacion">
+            Próximamente podrás analizar y graficar funciones matemáticas.
+        </div>
+        <p>Próximamente...</p>
+    </div>
+
+    <div class="footer">
+        <span>⚡ CalcMathPRO| Hecho por Ing.Cristales Luna</span>
+    </div>
+
+    <script>
+        function resolverCuadratica() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const resultado = document.getElementById('resultadoCuadratica');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                resultado.textContent = "Por favor, ingresa todos los coeficientes.";
+                return;
+            }
+            if (a === 0) {
+                resultado.textContent = "No es una ecuación cuadrática (a no puede ser 0).";
+                return;
+            }
+
+            const discriminante = b * b - 4 * a * c;
+            if (discriminante > 0) {
+                const x1 = (-b + Math.sqrt(discriminante)) / (2 * a);
+                const x2 = (-b - Math.sqrt(discriminante)) / (2 * a);
+                resultado.textContent = `x₁ = ${x1}, x₂ = ${x2}`;
+            } else if (discriminante === 0) {
+                const x = -b / (2 * a);
+                resultado.textContent = `x = ${x}`;
+            } else {
+                const real = -b / (2 * a);
+                const imag = Math.sqrt(-discriminante) / (2 * a);
+                resultado.textContent = `x₁ = ${real} + ${imag}i, x₂ = ${real} - ${imag}i`;
+            }
+        }
+
+        function resolverRecta() {
+            const x1 = parseFloat(document.getElementById('x1').value);
+            const y1 = parseFloat(document.getElementById('y1').value);
+            const x2 = parseFloat(document.getElementById('x2').value);
+            const y2 = parseFloat(document.getElementById('y2').value);
+            const resultado = document.getElementById('resultadoRecta');
+
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
+                resultado.textContent = "Por favor, ingresa todos los valores.";
+                return;
+            }
+            if (x1 === x2) {
+                resultado.textContent = "La recta es vertical: x = " + x1;
+                return;
+            }
+            const m = (y2 - y1) / (x2 - x1);
+            const b = y1 - m * x1;
+            resultado.textContent = `Ecuación: y = ${m}x + ${b}`;
+        }
+
+        function resolverCircunferencia() {
+            const h = parseFloat(document.getElementById('h').value);
+            const k = parseFloat(document.getElementById('k').value);
+            const r = parseFloat(document.getElementById('r').value);
+            const resultado = document.getElementById('resultadoCircunferencia');
+
+            if (isNaN(h) || isNaN(k) || isNaN(r) || r <= 0) {
+                resultado.textContent = "Por favor, ingresa valores válidos para el centro y un radio positivo.";
+                return;
+            }
+
+            // Ecuación canónica
+            const canonica = `(x ${h >= 0 ? '-' : '+'} ${Math.abs(h)})² + (y ${k >= 0 ? '-' : '+'} ${Math.abs(k)})² = ${r*r}`;
+
+            // Ecuación general: x² + y² + Dx + Ey + F = 0
+            const D = -2 * h;
+            const E = -2 * k;
+            const F = h*h + k*k - r*r;
+            let general = `x² + y² `;
+            general += (D >= 0 ? "+ " : "- ") + Math.abs(D) + "x ";
+            general += (E >= 0 ? "+ " : "- ") + Math.abs(E) + "y ";
+            general += (F >= 0 ? "+ " : "- ") + Math.abs(F) + " = 0";
+
+            resultado.innerHTML = `<b>Canónica:</b> ${canonica}<br><b>General:</b> ${general}`;
+        }
+
+        function resolverRadical() {
+            const a = parseFloat(document.getElementById('radicalA').value);
+            const resultado = document.getElementById('resultadoRadical');
+            if (isNaN(a)) {
+                resultado.textContent = "Por favor, ingresa un valor para a.";
+                return;
+            }
+            if (a < 0) {
+                resultado.textContent = "No hay solución real (x sería negativa bajo la raíz).";
+                return;
+            }
+            const x = a * a;
+            resultado.textContent = `x = ${x}`;
+        }
+
+        function resolverRacional() {
+            const a = parseFloat(document.getElementById('racionalA').value);
+            const b = parseFloat(document.getElementById('racionalB').value);
+            const resultado = document.getElementById('resultadoRacional');
+            if (isNaN(a) || isNaN(b)) {
+                resultado.textContent = "Por favor, ingresa valores para a y b.";
+                return;
+            }
+            if (b === 0) {
+                resultado.textContent = "No hay solución (b no puede ser 0).";
+                return;
+            }
+            const x = a / b;
+            resultado.textContent = `x = ${x}`;
+        }
+    </script>
+</body>
+</html>
